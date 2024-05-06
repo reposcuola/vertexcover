@@ -17,6 +17,8 @@ class Scene1(Scene):
         self.play(Create(r1), Create(r2), Create(r3), run_time=2)
         self.wait()
         self.play(FadeOut(r1), FadeOut(r2), FadeOut(r3), run_time=1)
+    
+    def neural_network(self):
         edges = []
         partitions = []
         c = 0
@@ -47,36 +49,98 @@ class Scene1(Scene):
         self.wait()
     
     def metro(self):
-        #metro station
+        # Initialize groups for dots and lines
+        dots = VGroup()
+        lines = VGroup()
+
+        # Metro stations setup
         stations = {
-            "A": [0, -3, 0],
-            "B": [0, -2, 0],
-            "C": [0, -1, 0],
-            "D": [1, 0, 0],
-           #"E": [1, -2, 0],
-           #"F": [0,-1, 0],
-           #"G": [2, -1, 0],
+            "A": [0, -3, 0], "B": [0, -2, 0], "C": [0, -1, 0],
+            "D": [1, 0, 0], "E": [1, -2, 0], "F": [0, -1, 0],
+            "G": [2, -1, 0], "H": [2, 0, 0], "I": [2, 1, 0],
+            "J": [2, 2, 0], "K": [-3, 2, 0], "L": [-2, 2, 0],
+            "M": [-1, 2, 0], "N": [0, 1, 0], "O": [1, 0, 0],
+            "P": [2, -1, 0], "Q": [3, 0, 0], "R": [4, -1, 0],
         }
         edges = [
-            ("A", "B", BLUE),
-            ("B", "C", BLUE),
-            ("C", "D", BLUE),
-
+            ("A", "B", BLUE), ("B", "C", BLUE), ("C", "D", BLUE),
+            ("E", "G", RED), ("G", "H", RED), ("H", "I", RED),
+            ("I", "J", RED), ("K", "L", GREEN), ("L", "M", GREEN),
+            ("M", "N", GREEN), ("N", "O", GREEN), ("O", "P", GREEN),
+            ("P", "Q", GREEN), ("Q", "R", GREEN),
         ]
 
-        # Create station dots
+        # Create dots
         for station, pos in stations.items():
             dot = Dot(point=pos, color=WHITE)
-            self.play(Create(dot), run_time=0.4)
+            self.play(Create(dot), run_time=0.1)
+            dots.add(dot)  # Add dot to group
 
-        # Draw lines
+        # Create lines
         for start, end, color in edges:
             line = Line(start=stations[start], end=stations[end], color=color, stroke_width=8)
-            self.play(Create(line), run_time=0.4)
+            self.play(Create(line), run_time=0.3)
+            lines.add(line)  # Add line to group
 
-        self.wait(1)
-        
+        # Pause to view the scene
+        self.wait()
+
+        # Fade out all dots and lines
+        self.play(FadeOut(dots), FadeOut(lines))
+        self.wait()
+
+
+    def bank(self):
+        bank_svg = SVGMobject("svg/bank.svg").scale(0.3)
+        bank2_svg = SVGMobject("svg/bank.svg").scale(0.3)
+        bank3_svg = SVGMobject("svg/bank.svg").scale(0.3)
+        bank4_svg = SVGMobject("svg/bank.svg").scale(0.3)
+        coin_svg = SVGMobject("svg/coin.svg").scale(0.2)
+        coin2_svg = SVGMobject("svg/coin.svg").scale(0.2)
+        coin3_svg = SVGMobject("svg/coin.svg").scale(0.2)
+        coin4_svg = SVGMobject("svg/coin.svg").scale(0.2)
+        coin5_svg = SVGMobject("svg/coin.svg").scale(0.2)
+        self.play(FadeIn(bank_svg.shift(LEFT*2)), run_time=0.7)
+        self.play(FadeIn(bank2_svg.shift(RIGHT*2)), run_time=0.7)
+        self.play(FadeIn(bank3_svg.shift(UP*2)), run_time=0.7)
+        self.play(FadeIn(bank4_svg.shift(DOWN*2)), run_time=0.7)
+        self.play(FadeIn(coin_svg.next_to(bank4_svg,LEFT)), run_time=0.7)
+        self.play(FadeIn(coin2_svg.next_to(bank4_svg,RIGHT)), run_time=0.7)
+        self.play(FadeIn(coin3_svg.next_to(bank3_svg,LEFT)), run_time=0.7)
+        self.play(FadeIn(coin4_svg.next_to(bank3_svg,DOWN)), run_time=0.7)
+        #move coin to bank 2
+        self.play(Transform(coin_svg, coin5_svg.next_to(bank_svg,LEFT)), run_time=0.7)
+        self.play(Transform(coin3_svg, coin5_svg.next_to(bank2_svg,RIGHT)), run_time=0.7)
+        self.wait(2)
+
+        self.wait()
     
+    def server(self):
+        vertices = [1, 2, 3, 4, 5, 6, 7]
+        edges = [(1, 7), (2, 4), (1, 4), (4, 6), (5, 6), (6, 3),(3,7)]
+        #svg
+        graph = Graph(vertices, edges, layout='circular', layout_scale=3)
+        self.play(Create(graph), run_time=4)
+        self.wait(0)
+        self.wait(6)
+  
+    def test(self):
+        # create vertical lines one next to the other
+        dots = VGroup()
+        lines = VGroup()
+        for i in range(1, 8):
+            dot = Dot(point=DOWN * 5, color=RED).next_to(dots, RIGHT*2)
+            line = Line(start=DOWN * 3, end=DOWN, color=WHITE).next_to(lines, RIGHT*2)
+            lines.add(line)
+            dots.add(dot)
+        self.play(Create(lines), run_time=4)
+        self.play(Create(dots), run_time=4)
+
+        
 
     def construct(self):
-        self.metro()
+        #self.intro()
+        #self.neural_network()
+        #self.metro()
+        #self.bank()
+        self.test()
