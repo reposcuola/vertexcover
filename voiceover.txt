@@ -1,0 +1,24 @@
+In questo video parleremo di grafi
+Una struttura dati che viene utilizzata in moltissimi campi
+Si pensi alle neural network oppure alle stazioni metro delle grandi metropoli
+O ancora alle banche di una multinazionale che cercano di distribuire i propri soldi uniformemente
+
+Insomma i grafi hanno un impatto enorme su di noi e riuscire a capirli è fondamentale
+
+Un famoso problema dei grafi riguarda la copertura dei vertici.
+Facciamo un esempio, l’azienda Google deve gestire migliaia di richieste al secondo il più rapidamente possibile mantenendo i costi dell’infrastruttura bassi.
+Quando un utente cerca qualcosa su google la richiesta viene inoltrata ad un server tra i tanti che si occuperà internamente di comunicare con il server che ha le informazioni richieste. 
+Per comunicare i server necessitano dei router,
+ogni server deve essere connesso ad almeno un router
+Questa è un problema di ottimizzazione fondamentale per ridurre i costi e aumentare l'efficienza della rete.
+
+La rete dei server si può rappresentare con questa struttura chiamata grafo.
+Per semplificare possiamo trasformare i server in dei punti (o nodi).
+Per andare a risolvere il problema di ottimizzazione di questi vari grafi, andremo a coprire la minor quantità di nodi possibili per coprire i vertici.
+E, considerando tutti gli archi in sequenza arbitraria, e se un arco non risulta coperto allora selezionando entrambi i suoi estremi, dovremmo riuscire a soddisfare questa richiesta.
+
+[Mentre l'animazione colora i nodi]
+I nodi coperti sono quelli che si colorano di rosso
+
+[Momento animazione]
+// DA FINIRE IN BASE ALLA ANIMAZIONE
