@@ -125,8 +125,47 @@ class Scene1(Scene):
         #SVG
         graph = Graph(vertices, edges, layout = 'circular', layout_scale = 3, vertex_mobjects = graphics)
         self.play(Create(graph), run_time = 4)
-        self.wait(6)
+        self.wait()
 
+        #color the edges
+        graph.vertices[2].set_color(BLUE)
+        graph.vertices[4].set_color(BLUE)
+        graph.vertices[1].set_color(RED)
+        graph.vertices[7].set_color(RED)
+        graph.vertices[3].set_color(GREEN)
+        graph.vertices[6].set_color(GREEN)
+
+        # Animate nodes 1 and 2 moving outwards and adjust the connected edges
+        #node1 = graph.vertices[1]
+        #node2 = graph.vertices[2]
+        #node3 = graph.vertices[3]
+        #node4 = graph.vertices[4]
+        #node5 = graph.vertices[5]
+        #node6 = graph.vertices[6]
+        #node7 = graph.vertices[7]
+        #node8 = graph.vertices[8]
+        #new_pos_node1_7 = np.array([[0, 0, 0],[0, -3, 0]])
+        #new_pos_node2_5 = np.array([[1,0, 0],[1, -3, 0]])
+        #new_pos_node1_4 = np.array([[2, 0, 0],[2, -3, 0]])
+        #new_pos_node6_8 = np.array([[3, 0, 0],[3, -3, 0]])
+        #new_pos_node2_3 = np.array([[4, 0, 0],[4, -3, 0]])
+        #graph.remove_edges((1, 4), (3, 2))
+        #graph2.remove_edges((1,7), (2,5), (6,8))
+        #graph.remove_vertices(3,4)
+        #graph2.remove_vertices(5,6,7,8)
+
+        # Move the nodes
+        #self.play(
+        #    node1.animate.move_to(new_pos_node1_7[0]), node7.animate.move_to(new_pos_node1_7[1]),
+        #    node2.animate.move_to(new_pos_node2_5[0]), node5.animate.move_to(new_pos_node2_5[1]),
+        #    node6.animate.move_to(new_pos_node6_8[0]), node8.animate.move_to(new_pos_node6_8[1]),
+        #    graph2.vertices[1].animate.move_to(new_pos_node1_4[0]), graph2.vertices[4].animate.move_to(new_pos_node1_4[1]),
+        #    graph2.vertices[2].animate.move_to(new_pos_node2_3[0]), graph2.vertices[3].animate.move_to(new_pos_node2_3[1]), 
+        #    run_time=5)
+        #
+        #self.wait(3)
+
+        self.wait(4)
         # The solution algorithm
 
     def test(self):
