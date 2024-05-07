@@ -1,7 +1,7 @@
 from manim import *
 
 SVG_FOLDER = "svg"
-FROM_SVG = lambda name: SVG_FOLDER + "/" + name + ".svg"  # Uso un inline (che su python sono traducibili in lambda) che dovrebbe essere più veloce da runnare a differenza di una funzione normale (teoricamente dovrebbe essere cosi anche su python)
+FROM_SVG = lambda name: SVG_FOLDER + "/" + name + ".svg"  # I'll use an inline (which on python can be translated into lambda) that should be faster to execute unlike a normal function  - Nex
 
 class Scene1(Scene):
     def intro(self):
@@ -27,10 +27,10 @@ class Scene1(Scene):
             c += i
 
         for i, v in enumerate(layers[1:]):
-                last = sum(layers[:i + 1])
-                for j in range(v):
-                    for k in range(last - layers[i], last):
-                        edges.append((k + 1, j + last + 1))
+            last = sum(layers[:i + 1])
+            for j in range(v):
+                for k in range(last - layers[i], last):
+                    edges.append((k + 1, j + last + 1))
 
         vertices = np.arange(1, sum(layers) + 1)
         graph = Graph(
@@ -114,11 +114,20 @@ class Scene1(Scene):
     def servers(self):
         vertices = [1, 2, 3, 4, 5, 6, 7]
         edges = [(1, 7), (2, 4), (1, 4), (4, 6), (5, 6), (6, 3), (3, 7)]
+        graphics = {}
+
+        for num in vertices:
+            dot = Dot(radius = 0.3)
+            server = SVGMobject(FROM_SVG("server")).scale(0.17)
+            server.insert(0, dot)
+            graphics[num] = server
 
         #SVG
-        graph = Graph(vertices, edges, layout = 'circular', layout_scale = 3)
+        graph = Graph(vertices, edges, layout = 'circular', layout_scale = 3, vertex_mobjects = graphics)
         self.play(Create(graph), run_time = 4)
         self.wait(6)
+
+        # The solution algorithm
 
     def test(self):
         # Create vertical lines one next to the other
