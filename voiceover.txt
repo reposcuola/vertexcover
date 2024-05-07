@@ -14,13 +14,14 @@ Questo è un problema di ottimizzazione fondamentale per ridurre i costi e aumen
 
 La rete dei server si può rappresentare con questa struttura chiamata grafo.
 Per semplificare possiamo trasformare i server in dei punti (o nodi).
+Una coppia di nodi connessi tra loro formano a loro volta un arco, e quindi, un grafo è formato da tanti archi interconnessi tra loro.
 Per andare a risolvere il problema di ottimizzazione di questi vari grafi, andremo a coprire la minor quantità di nodi possibili per coprire i vertici.
-E, considerando tutti gli archi in sequenza arbitraria, e se un arco non risulta coperto allora selezionando entrambi i suoi estremi, dovremmo riuscire a soddisfare questa richiesta.
+E considerando tutti gli archi in sequenza arbitraria, e se un arco non risulta coperto allora selezionando entrambi i suoi estremi, dovremmo riuscire a soddisfare questa richiesta.
 
 [Mentre l'animazione colora i nodi]
 I nodi coperti sono quelli che si colorano di rosso
 
 [Momento animazione]
 
-Ci sono ovviamente molti altri modi (forse anche più ottimali) per coprire i vertici ovviamente, ma pensavamo che questo fosse il più interessante.
+Ci sono ovviamente molti altri modi (forse anche più ottimali) per coprire i vertici, ovviamente, ma pensavamo che questo fosse il più interessante.
 Grazie per l'attenzione!
